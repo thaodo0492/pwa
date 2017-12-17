@@ -135,6 +135,7 @@ p{
 #senpai2{
      position:absolute;
      top:0;left:0;
+     height:100%;width:100%;
      display:none;
 }
 
@@ -150,4 +151,21 @@ nav p.navbar__header{
 }
 #slide-out ul:first-child{
      margin-top:0px;
+}
+
+.main{
+     display:flex;
+     flex-direction: column;
+     height: calc(100% - 56px);
+}
+
+/******
+     TODELETE
+     */
+
+#senpai1{
+     display:none;
+}
+#senpai2{
+     display:block;
 }
