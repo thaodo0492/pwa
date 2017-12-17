@@ -8,7 +8,8 @@
  #senpai1 {
      position:absolute;
      top:0;left:0;
-     height: 100vh;
+     height: 100%;
+     width: 100%;
      display: flex;
      flex-direction: column;
      background-color: #00695c;
@@ -114,6 +115,7 @@ nav a.button-collapse{
 ****/
 
 p{
+     margin:0px;
     -webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
 }
