@@ -29,44 +29,44 @@
      margin-top: 20px;
  }
  
- .input-field label,
- .input-field .prefix.active,
- .input-field .prefix {
+#senpai1 .input-field label,
+#senpai1 .input-field .prefix.active,
+#senpai1 .input-field .prefix {
      color: #fff;
  }
  
- .input-field input {
+#senpai1 .input-field input {
      color: #fff;
  }
  
- .terms {
+#senpai1 .terms {
      color: #fff;
      margin-top: 30px;
  }
  
- .flex-empty {
+#senpai1 .flex-empty {
      flex-grow: 1;
  }
  
- input[type=email]:not(.browser-default):focus:not([readonly]),
- input[type=email]:not(.browser-default):focus:not([readonly]) {
+#senpai1 input[type=email]:not(.browser-default):focus:not([readonly]),
+#senpai1 input[type=email]:not(.browser-default):focus:not([readonly]) {
      box-shadow: 0 1px 0 0 #fff;
      border-bottom: 1px solid #fff;
  }
  
- textarea:focus:not([readonly])+label,
- input[type=email]:not(.browser-default):focus:not([readonly])+label {
+ #senpai1 textarea:focus:not([readonly])+label,
+ #senpai1 input[type=email]:not(.browser-default):focus:not([readonly])+label {
      color: #fff;
  }
  
- input[type=password]:not(.browser-default):focus:not([readonly]),
- input[type=password]:not(.browser-default):focus:not([readonly]) {
+ #senpai1 input[type=password]:not(.browser-default):focus:not([readonly]),
+ #senpai1 input[type=password]:not(.browser-default):focus:not([readonly]) {
      box-shadow: 0 1px 0 0 #fff;
      border-bottom: 1px solid #fff;
  }
  
- textarea:focus:not([readonly])+label,
- input[type=password]:not(.browser-default):focus:not([readonly])+label {
+ #senpai1 textarea:focus:not([readonly])+label,
+ #senpai1 input[type=password]:not(.browser-default):focus:not([readonly])+label {
      color: #fff;
  }
  
