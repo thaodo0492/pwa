@@ -1,43 +1,90 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PT App</title>
 
-  <!-- Materialize -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-  <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!--Skeleton stylesheet-->
+    <link rel="stylesheet" href="styles/style.css">
 
-  <!-- update the version number as needed -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script> -->
-  <!-- include only the Firebase features as you need -->
-  <!-- <script defer src="/__/firebase/4.8.0/firebase-auth.js"></script> -->
-  <!-- <script defer src="/__/firebase/4.8.0/firebase-database.js"></script> -->
-  <!-- <script defer src="/__/firebase/4.8.0/firebase-messaging.js"></script> -->
-  <!-- <script defer src="/__/firebase/4.8.0/firebase-storage.js"></script> -->
-  <!-- initialize the SDK after all desired features are loaded -->
-  <!-- <script defer src="/__/firebase/init.js"></script>-->
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- jQuery -->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <!-- Materialize //depends on jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <!-- update the version number as needed -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script> -->
+    <!-- include only the Firebase features as you need -->
+    <!-- <script defer src="/__/firebase/4.8.0/firebase-auth.js"></script> -->
+    <!-- <script defer src="/__/firebase/4.8.0/firebase-database.js"></script> -->
+    <!-- <script defer src="/__/firebase/4.8.0/firebase-messaging.js"></script> -->
+    <!-- <script defer src="/__/firebase/4.8.0/firebase-storage.js"></script> -->
+    <!-- initialize the SDK after all desired features are loaded -->
+    <!-- <script defer src="/__/firebase/init.js"></script>-->
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- Materialize //depends on jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
 </head>
-<body>
 
-<script>
-  // Initialize Firebase
-  /*var config = {
-    apiKey: "AIzaSyCHuR84HOFogL_jbjQ9QjYUM3xeKK4bFU8",
-    authDomain: "pwfridge-7006a.firebaseapp.com",
-    databaseURL: "https://pwfridge-7006a.firebaseio.com",
-    projectId: "pwfridge-7006a",
-    storageBucket: "pwfridge-7006a.appspot.com",
-    messagingSenderId: "865892165987"
-  };
-  firebase.initializeApp(config);*/
-</script>
+<body>
+    <div id="senpai1">
+
+        <div class="app-logo valign-wrapper">
+            <img src="https://www.digitransfer.info/cliparts/images/themashop/overig/say_cheese.svg" alt="logo" height="200" width="200">
+        </div>
+
+        <div class="login-register-form valign-wrapper">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="small material-icons prefix form-icons">mail_outline</i>
+                    <input id="email" type="email" class="validate">
+                    <label for="email" data-error="wrong" data-success="right">Email</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="small material-icons prefix form-icons">lock_outline</i>
+                    <input id="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                </div>
+                <div class="col s12">
+                    <a class="waves-effect waves-light btn sign-up-btn">Sign Up</a>
+                </div>
+                <div class="col s12">
+                    <p class="center-align terms">Terms of Service and Privacy Policy </p>
+                </div>
+            </div>
+        </div>
+        <div class="flex-empty"></div>
+        <p class="center-align terms"> Have an account? Log in </p>
+
+    </div>
+
+    <!--
+<div id="senpai2"></div>
+<div id="loader"></div>
+-->
+
+
+    <script>
+        // Initialize Firebase
+        /*var config = {
+          apiKey: "AIzaSyCHuR84HOFogL_jbjQ9QjYUM3xeKK4bFU8",
+          authDomain: "pwfridge-7006a.firebaseapp.com",
+          databaseURL: "https://pwfridge-7006a.firebaseio.com",
+          projectId: "pwfridge-7006a",
+          storageBucket: "pwfridge-7006a.appspot.com",
+          messagingSenderId: "865892165987"
+        };
+        firebase.initializeApp(config);*/
+
+    </script>
 </body>
+
 </html>

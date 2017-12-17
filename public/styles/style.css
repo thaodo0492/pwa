@@ -1,0 +1,81 @@
+ body,
+ html {
+     margin: 0;
+     padding: 0;
+     border: 0;
+ }
+ 
+ #senpai1 {
+     height: 100vh;
+     display: flex;
+     flex-direction: column;
+     background-color: #00695c;
+ }
+ 
+ .app-logo {
+     height: 40%;
+     justify-content: center;
+ }
+ 
+ .login-register-form {
+     justify-content: center;
+ }
+ 
+ .sign-up-btn {
+     width: 100%;
+     margin-top: 20px;
+ }
+ 
+ .input-field label,
+ .input-field .prefix.active,
+ .input-field .prefix {
+     color: #fff;
+ }
+ 
+ .input-field input {
+     color: #fff;
+ }
+ 
+ .terms {
+     color: #fff;
+     margin-top: 30px;
+ }
+ 
+ .flex-empty {
+     flex-grow: 1;
+ }
+ 
+ input[type=email]:not(.browser-default):focus:not([readonly]),
+ input[type=email]:not(.browser-default):focus:not([readonly]) {
+     box-shadow: 0 1px 0 0 #fff;
+     border-bottom: 1px solid #fff;
+ }
+ 
+ textarea:focus:not([readonly])+label,
+ input[type=email]:not(.browser-default):focus:not([readonly])+label {
+     color: #fff;
+ }
+ 
+ input[type=password]:not(.browser-default):focus:not([readonly]),
+ input[type=password]:not(.browser-default):focus:not([readonly]) {
+     box-shadow: 0 1px 0 0 #fff;
+     border-bottom: 1px solid #fff;
+ }
+ 
+ textarea:focus:not([readonly])+label,
+ input[type=password]:not(.browser-default):focus:not([readonly])+label {
+     color: #fff;
+ }
+ 
+ .form-icons {
+     margin-top: 20px;
+ }
+ 
+ @media (min-width: 600px) {
+     #senpai1 {
+         background-color: red;
+     }
+     .app-logo {
+         background-color: lawngreen;
+     }
+ }
