@@ -6,6 +6,8 @@
  }
  
  #senpai1 {
+     position:absolute;
+     top:0;left:0;
      height: 100vh;
      display: flex;
      flex-direction: column;
@@ -127,6 +129,12 @@ p{
 /*****
      CSS
 *****/
+
+#senpai2{
+     position:absolute;
+     top:0;left:0;
+     display:none;
+}
 
 nav p.navbar__header{
     font-size: 30px;
