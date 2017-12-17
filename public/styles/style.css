@@ -79,3 +79,65 @@
          background-color: lawngreen;
      }
  }
+
+
+
+
+
+
+
+
+
+
+/*****
+     DE-MATERIALIZE
+*****/
+
+nav a.button-collapse{
+     display:block;
+}
+.side-nav .user-view{
+     margin-bottom:0px;
+     padding-bottom:1px;
+}
+.side-nav .user-view .name{
+     margin-top:0;
+}
+.side-nav a {
+    padding: 0px;
+}
+
+/****
+     CSS RESETS
+****/
+
+p{
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+}
+
+/*****
+     
+*****/
+
+.flexFillGrow{
+     flex-grow:1;
+}
+
+/*****
+     CSS
+*****/
+
+nav p.navbar__header{
+    font-size: 30px;
+}
+.user-view .row{
+    margin-bottom: 14px;
+}
+#slide-out{
+    display: flex;
+    flex-direction: column;
+}
+#slide-out ul:first-child{
+     margin-top:0px;
+}
