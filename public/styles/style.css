@@ -6,8 +6,9 @@
  }
  
  #senpai1 {
-     position:absolute;
-     top:0;left:0;
+     position: absolute;
+     top: 0;
+     left: 0;
      height: 100%;
      width: 100%;
      display: flex;
@@ -29,27 +30,27 @@
      margin-top: 20px;
  }
  
-#senpai1 .input-field label,
-#senpai1 .input-field .prefix.active,
-#senpai1 .input-field .prefix {
+ #senpai1 .input-field label,
+ #senpai1 .input-field .prefix.active,
+ #senpai1 .input-field .prefix {
      color: #fff;
  }
  
-#senpai1 .input-field input {
+ #senpai1 .input-field input {
      color: #fff;
  }
  
-#senpai1 .terms {
+ #senpai1 .terms {
      color: #fff;
      margin-top: 30px;
  }
  
-#senpai1 .flex-empty {
+ #senpai1 .flex-empty {
      flex-grow: 1;
  }
  
-#senpai1 input[type=email]:not(.browser-default):focus:not([readonly]),
-#senpai1 input[type=email]:not(.browser-default):focus:not([readonly]) {
+ #senpai1 input[type=email]:not(.browser-default):focus:not([readonly]),
+ #senpai1 input[type=email]:not(.browser-default):focus:not([readonly]) {
      box-shadow: 0 1px 0 0 #fff;
      border-bottom: 1px solid #fff;
  }
@@ -82,90 +83,90 @@
          background-color: lawngreen;
      }
  }
-
-
-
-
-
-
-
-
-
-
-/*****
+ /*****
      DE-MATERIALIZE
+
 *****/
-
-nav a.button-collapse{
-     display:block;
-}
-.side-nav .user-view{
-     margin-bottom:0px;
-     padding-bottom:1px;
-}
-.side-nav .user-view .name{
-     margin-top:0;
-}
-.side-nav a {
-    padding: 0px;
-}
-
-/****
+ 
+ .collection {
+     overflow: auto;
+ }
+ 
+ nav a.button-collapse {
+     display: block;
+ }
+ 
+ .side-nav .user-view {
+     margin-bottom: 0px;
+     padding-bottom: 1px;
+ }
+ 
+ .side-nav .user-view .name {
+     margin-top: 0;
+ }
+ 
+ .side-nav a {
+     padding: 0px;
+ }
+ /****
      CSS RESETS
 ****/
-
-p{
-     margin:0px;
-    -webkit-margin-before: 0em;
-    -webkit-margin-after: 0em;
-}
-
-/*****
+ 
+ p {
+     margin: 0px;
+     -webkit-margin-before: 0em;
+     -webkit-margin-after: 0em;
+ }
+ /*****
      
 *****/
-
-.flexFillGrow{
-     flex-grow:1;
-}
-
-/*****
+ 
+ .flexFillGrow {
+     flex-grow: 1;
+ }
+ /*****
      CSS
 *****/
-
-#senpai2{
-     position:absolute;
-     top:0;left:0;
-     height:100%;width:100%;
-     display:none;
-}
-
-nav p.navbar__header{
-    font-size: 30px;
-}
-.user-view .row{
-    margin-bottom: 14px;
-}
-#slide-out{
-    display: flex;
-    flex-direction: column;
-}
-#slide-out ul:first-child{
-     margin-top:0px;
-}
-
-.main{
-     display:flex;
+ 
+ #senpai2 {
+     position: absolute;
+     top: 0;
+     left: 0;
+     height: 100%;
+     width: 100%;
+     display: none;
+ }
+ 
+ nav p.navbar__header {
+     font-size: 30px;
+ }
+ 
+ .user-view .row {
+     margin-bottom: 14px;
+ }
+ 
+ #slide-out {
+     display: flex;
+     flex-direction: column;
+ }
+ 
+ #slide-out ul:first-child {
+     margin-top: 0px;
+ }
+ 
+ .main {
+     display: flex;
      flex-direction: column;
      height: calc(100% - 56px);
-}
-
-/******
+ }
+ /******
      TODELETE
      */
-
-#senpai1{
-     display:none;
-}
-#senpai2{
-     display:block;
-}
+ 
+ #senpai1 {
+     display: none;
+ }
+ 
+ #senpai2 {
+     display: block;
+ }
