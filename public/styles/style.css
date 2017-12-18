@@ -132,6 +132,22 @@ p{
      CSS
 *****/
 
+.side-nav_bottom{
+     display:flex;
+}
+
+.side-nav_but-bottom{
+     display:flex;
+     flex-direction: column;
+     align-items: center;
+     padding:10px;
+     flex-grow: 1;
+}
+
+.side-nav_but-bottom:hover{
+     background-color:rgba(0,0,0,0.05);
+}
+
 #senpai2{
      position:absolute;
      top:0;left:0;
