@@ -178,14 +178,3 @@ html, body {
      flex-direction: column;
      height: calc(100% - 56px);
 }
-
-/******
-     TODELETE
-     */
-
-#senpai1{
-     display:none;
-}
-#senpai2{
-     display:block;
-}
