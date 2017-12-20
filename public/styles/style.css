@@ -126,6 +126,10 @@
  /*****
      CSS
 *****/
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 
 .side-nav_bottom{
      display:flex;
