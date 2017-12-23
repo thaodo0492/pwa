@@ -17,14 +17,15 @@
     <!--Skeleton stylesheet-->
     <link rel="stylesheet" href="styles/style.css">
     <!-- update the version number as needed -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
     <!-- include only the Firebase features as you need -->
-    <!-- <script defer src="/__/firebase/4.8.0/firebase-auth.js"></script> -->
+    <script src="/__/firebase/4.8.0/firebase-auth.js"></script>
+    <script src="/__/firebase/4.8.0/firebase-firestore.js"></script>
     <!-- <script defer src="/__/firebase/4.8.0/firebase-database.js"></script> -->
     <!-- <script defer src="/__/firebase/4.8.0/firebase-messaging.js"></script> -->
     <!-- <script defer src="/__/firebase/4.8.0/firebase-storage.js"></script> -->
     <!-- initialize the SDK after all desired features are loaded -->
-    <!-- <script defer src="/__/firebase/init.js"></script>-->
+    <script src="/__/firebase/init.js"></script>
 
     <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -35,7 +36,6 @@
 
 <body>
     <div id="senpai1">
-
         <div class="app-logo valign-wrapper">
             <img src="https://www.digitransfer.info/cliparts/images/themashop/overig/say_cheese.svg" alt="logo" height="200" width="200">
         </div>
@@ -53,7 +53,7 @@
                     <label for="password">Password</label>
                 </div>
                 <div class="col s12">
-                    <a class="waves-effect waves-light btn sign-up-btn">Sign Up</a>
+                    <a class="waves-effect waves-light btn login-register-btn">..</a>
                 </div>
                 <div class="col s12">
                     <p class="center-align terms">Terms of Service and Privacy Policy </p>
@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="flex-empty"></div>
-        <p class="center-align terms"> Have an account? Log in </p>
+        <p class="center-align terms login-register-page-change"> .. <a href="#"></a>..</p> <!-- Have an account? Log in --><!-- Don't have an account? Sign up -->
 
     </div>
 
@@ -92,7 +92,7 @@
                 <li>
                     <div class="user-view">
                         <div class="background">
-                            <img src="/images/yuna.jpg">
+                            <img src="/images/office.jpg">
                         </div>
                         <div class="row">
                             <div class="col s4">
@@ -132,25 +132,66 @@
         </div>
 
     </div>
-    <!--
-<div id="loader"></div>
--->
 
+	<div id="loader"></div>
 
-    <script type="text/javascript" src="scripts/app.js"></script>
-    <script>
-        // Initialize Firebase
-        /*var config = {
-          apiKey: "AIzaSyCHuR84HOFogL_jbjQ9QjYUM3xeKK4bFU8",
-          authDomain: "pwfridge-7006a.firebaseapp.com",
-          databaseURL: "https://pwfridge-7006a.firebaseio.com",
-          projectId: "pwfridge-7006a",
-          storageBucket: "pwfridge-7006a.appspot.com",
-          messagingSenderId: "865892165987"
-        };
-        firebase.initializeApp(config);*/
+    <script defer type="text/javascript" src="scripts/app.js"></script>
 
-    </script>
+    <script defer type="text/javascript">
+	firebase.auth().onAuthStateChanged(function(user) {
+	  if (user!=undefined && user.emailVerified) {
+	  	/*var db = firebase.firestore();
+	    console.log("updating db");
+	    var userSettings = db.collection("user-settings").doc(user.uid);
+		
+		return userSettings.update({
+		    "setup-done": false
+		})
+		.then(function() {
+		    console.log("Document successfully updated!");
+		})
+		.catch(function(error) {
+		    // The document probably doesn't exist.
+		    console.error("Error updating document: ", error);
+		});
+	    // User is signed in.
+	    /*
+	    var displayName = user.displayName;
+	    var email = user.email;
+	    var emailVerified = user.emailVerified;
+	    var photoURL = user.photoURL;
+	    var isAnonymous = user.isAnonymous;
+	    var uid = user.uid;
+	    var providerData = user.providerData;
+	    // ...*/
+	    /*$("#senpai1").css("display","none");
+	    $("#senpai2").css("display","block");*/
+	  } else if(user && !user.emailVerified) {
+			db = firebase.firestore();
+			uid = user.uid;
+			db.collection("user-settings").doc(user.uid).set({
+			    isSetupDone: false
+			})
+			.then(function() {
+			    console.log("Document successfully written!");
+			})
+			.catch(function(error) {
+			    console.error("Error writing document: ", error);
+			});
+	  	/*
+	    user.sendEmailVerification({url: 'https://pwfridge-7006a.firebaseapp.com/'}).then(function() {
+		  // Email sent.
+		  //Write code to show to user success
+		}).catch(function(error) {
+			//Write code to show to user error
+		  // An error happened.
+		});*/
+	  }else{
+	  	//User is signed out
+	  }
+	});
+
+</script>
 </body>
 
 </html>
