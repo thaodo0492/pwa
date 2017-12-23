@@ -2,7 +2,12 @@
     'use strict';
 
   var app = {
-    isFirstAuthCheck: true,
+    isFirstUnauthCheckDone: false,
+    isFirstAuthCheckDone: false,
+
+    currentPage: "",
+    user: undefined,
+    db: firebase.firestore(),
 
     isLoading: true,
     visibleCards: {},
@@ -20,37 +25,86 @@
      *
      ****************************************************************************/
 
-    //Create a function for registering 
-    //and create a function for logging in
-    $(".login-register-btn").click(function(){
-        firebase.auth().createUserWithEmailAndPassword($("#email").val(), $("#password").val()).catch(function(error) {
-        /*
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          // ...
-          console.log(errorCode + " "+ errorMessage);*/
-        });
-        firebase.auth().signInWithEmailAndPassword($("#email").val(), $("#password").val()).catch(function(error) {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          // ...
-        });
-
+    $("#senpai1 .login-register-btn").click(function(){
+        if(app.currentPage == "signup"){
+            signupUser();
+            loginUser();
+        }else{
+            loginUser();
+        }
     });
-    
+
+     $("#senpai1 .login-register-page-change a").click(switchSenpaiPage);
+
     /*****************************************************************************
      *
      * Methods to update/refresh the UI
      *
      ****************************************************************************/
+    function loadSignupPage(){
+        $("#senpai1 .login-register-btn").text("Sign up");
+        $("#senpai1 .login-register-page-change span").text("Have an account?");
+        $("#senpai1 .login-register-page-change a").text("Log in!");
+        app.currentPage = "signup";
+    }
+
+    function loadLoginPage(){
+        $("#senpai1 .login-register-btn").text("Log in");
+        $("#senpai1 .login-register-page-change span").html("Don't have an account?");
+        $("#senpai1 .login-register-page-change a").text("Sign up!");
+        app.currentPage = "login";
+    }
+
+    function switchSenpaiPage(){
+        if (app.currentPage == "login"){
+            loadSignupPage();
+        }else{
+            loadLoginPage();
+        }
+    }
 
     /*****************************************************************************
      *
      * Methods for dealing with the model
      *
      ****************************************************************************/
+
+
+
+    /*****************************************************************************
+     *
+     * Methods for User Authentication
+     *
+     ****************************************************************************/
+
+     function signupUser(){
+        firebase.auth().createUserWithEmailAndPassword($("#email").val(), $("#password").val()).catch(function(error) {
+            /*// Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;*/
+        });
+     }
+
+     function setUpAccountData(){
+        app.db.collection("user-settings").doc(app.user.uid).set({
+            isSetupFinished: false
+        })
+        .then(function() {
+            console.log("Document successfully written!");
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+     }
+
+     function loginUser(){
+        firebase.auth().signInWithEmailAndPassword($("#email").val(), $("#password").val()).catch(function(error) {
+          /*// Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;*/
+        });
+     }
+
 
     /************************************************************************
      *
@@ -62,28 +116,33 @@
      *   Instead, check out IDB (https://www.npmjs.com/package/idb) or
      *   SimpleDB (https://gist.github.com/inexorabletash/c8069c042b734519680c)
      ************************************************************************/
-     //toggle loader on
+
     firebase.auth().onAuthStateChanged(function(user) {
-        if(app.isFirstAuthCheck){
-            app.isFirstAuthCheck == false;
-            if (user!=undefined && user.emailVerified) {
+        app.user = user;
+        if (user!=undefined && user.emailVerified) {
+            if(app.isFirstAuthCheckDone){
+                //show senpai2
+                //load fridge page
+            }else{
+                app.isFirstAuthCheckDone=true;
                 //check if user finished settup
                     //true
                         //load fridge page in senpai2
                     //false
                         // load setup page in senpai2
-                //show senpai2
-                //toggle loader off
-            } else if(user && !user.emailVerified) {
-                //show a verification screen and continue
-            }else{
-            //User is signed out
             }
+        } else if(user && !user.emailVerified) {
+            setUpAccountData();
+            //show a verification screen and continue
         }else{
-            if (user!=undefined && user.emailVerified) {
-            } else if(user && !user.emailVerified) {
+            if(app.isFirstUnauthCheckDone){
+                //User is signed out
+                
             }else{
-            //User is signed out
+                //load signup page
+                //executes when app runs for the first time if user is not auth.
+                app.isFirstUnauthCheckDone = true;
+                switchSenpaiPage();
             }
         }
     });
@@ -93,6 +152,7 @@
 
 })();
 
+// Register our service worker
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
         navigator.serviceWorker.register('/sw.js');
