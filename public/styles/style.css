@@ -6,8 +6,9 @@
  }
  
  #senpai1 {
-     position:absolute;
-     top:0;left:0;
+     position: absolute;
+     top: 0;
+     left: 0;
      height: 100%;
      width: 100%;
      display: flex;
@@ -27,29 +28,34 @@
  .login-register-btn {
      width: 100%;
      margin-top: 20px;
+     background-color: #439889;
  }
  
-#senpai1 .input-field label,
-#senpai1 .input-field .prefix.active,
-#senpai1 .input-field .prefix {
+ .login-register-btn:hover {
+     background-color: #439889;
+ }
+ 
+ #senpai1 .input-field label,
+ #senpai1 .input-field .prefix.active,
+ #senpai1 .input-field .prefix {
      color: #fff;
  }
  
-#senpai1 .input-field input {
+ #senpai1 .input-field input {
      color: #fff;
  }
  
-#senpai1 .terms {
+ #senpai1 .terms {
      color: #fff;
      margin-top: 30px;
  }
  
-#senpai1 .flex-empty {
+ #senpai1 .flex-empty {
      flex-grow: 1;
  }
  
-#senpai1 input[type=email]:not(.browser-default):focus:not([readonly]),
-#senpai1 input[type=email]:not(.browser-default):focus:not([readonly]) {
+ #senpai1 input[type=email]:not(.browser-default):focus:not([readonly]),
+ #senpai1 input[type=email]:not(.browser-default):focus:not([readonly]) {
      box-shadow: 0 1px 0 0 #fff;
      border-bottom: 1px solid #fff;
  }
@@ -74,14 +80,7 @@
      margin-top: 20px;
  }
  
- @media (min-width: 600px) {
-     #senpai1 {
-         background-color: red;
-     }
-     .app-logo {
-         background-color: lawngreen;
-     }
- }
+ @media (min-width: 600px) {}
  /*****
      DE-MATERIALIZE
 
@@ -126,26 +125,28 @@
  /*****
      CSS
 *****/
-html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-.side-nav_bottom{
-     display:flex;
-}
-
-.side-nav_but-bottom{
-     display:flex;
+ 
+ html,
+ body {
+     max-width: 100%;
+     overflow-x: hidden;
+ }
+ 
+ .side-nav_bottom {
+     display: flex;
+ }
+ 
+ .side-nav_but-bottom {
+     display: flex;
      flex-direction: column;
      align-items: center;
-     padding:10px;
+     padding: 10px;
      flex-grow: 1;
-}
-
-.side-nav_but-bottom:hover{
-     background-color:rgba(0,0,0,0.05);
-}
+ }
+ 
+ .side-nav_but-bottom:hover {
+     background-color: rgba(0, 0, 0, 0.05);
+ }
  
  #senpai2 {
      position: absolute;
@@ -153,7 +154,7 @@ html, body {
      left: 0;
      height: 100%;
      width: 100%;
-     display: none;
+     /* display: none;*/
  }
  
  nav p.navbar__header {
@@ -177,4 +178,4 @@ html, body {
      display: flex;
      flex-direction: column;
      height: calc(100% - 56px);
-}
+ }
