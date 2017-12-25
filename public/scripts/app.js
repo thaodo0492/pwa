@@ -1,23 +1,33 @@
 (function () {
     'use strict';
 
-  var app = {
-    isFirstUnauthCheckDone: false,
-    isFirstAuthCheckDone: false,
+    var app = {
+        //ELEMENTS
+        sp1: $("#senpai1"),
+        sp2: $("#senpai2"),
+        loader: $("#loader"),
 
-    currentPage: "",
-    user: undefined,
-    db: firebase.firestore(),
+        /*
+         * Used to figure out if we should show the user 
+         */
+        isFirstUnauthCheckDone: false,
+        isFirstAuthCheckDone: false,
 
-    isLoading: true,
-    visibleCards: {},
-    selectedCities: [],
-    spinner: document.querySelector('.loader'),
-    cardTemplate: document.querySelector('.cardTemplate'),
-    container: document.querySelector('.main'),
-    addDialog: document.querySelector('.dialog-container'),
-    daysOfWeek: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-  };
+        //page currently shown (it's going to load signup first)
+        currentPage: "signup",
+        currentSenpai: $("#senpai1"),
+
+        //user object
+        user: undefined,
+        //userSettings document
+        docRefUserSettings: undefined,
+
+        //database
+        db: firebase.firestore(),
+
+        //is app loading
+        isLoading: true
+    };
 
     /*****************************************************************************
      *
@@ -26,6 +36,7 @@
      ****************************************************************************/
 
     $("#senpai1 .login-register-btn").click(function(){
+        toggleLoaderOn(true);
         if(app.currentPage == "signup"){
             signupUser();
             loginUser();
@@ -34,18 +45,37 @@
         }
     });
 
-     $("#senpai1 .login-register-page-change a").click(switchSenpaiPage);
+     $("#senpai1 .login-register-page-change a").click(switchLoginSignupPage);
 
     /*****************************************************************************
      *
      * Methods to update/refresh the UI
      *
      ****************************************************************************/
+    function toggleLoaderOn(toggleOn){
+        if(toggleOn == undefined){
+            if(app.isLoading){
+                toggleLoaderOn(false);
+            }else{
+                toggleLoaderOn(true);
+            }
+        }else{
+            if(toggleOn){
+                app.isLoading=true;
+                app.loader.css("display","block");
+            }else{
+                app.isLoading=false;
+                app.loader.css("display","none");
+            }
+        }
+    }
+
     function loadSignupPage(){
         $("#senpai1 .login-register-btn").text("Sign up");
         $("#senpai1 .login-register-page-change span").text("Have an account?");
         $("#senpai1 .login-register-page-change a").text("Log in!");
         app.currentPage = "signup";
+        app.currentSenpai = app.sp1;
     }
 
     function loadLoginPage(){
@@ -53,22 +83,69 @@
         $("#senpai1 .login-register-page-change span").html("Don't have an account?");
         $("#senpai1 .login-register-page-change a").text("Sign up!");
         app.currentPage = "login";
+        app.currentSenpai = app.sp1;
     }
 
-    function switchSenpaiPage(){
-        if (app.currentPage == "login"){
-            loadSignupPage();
+    function switchLoginSignupPage(page){
+        if(page == "login" || page == "signup"){
+            if(page == "login"){
+                loadLoginPage();
+            }else{
+                loadSignupPage();
+            }
         }else{
-            loadLoginPage();
+            if (app.currentPage == "login"){
+                loadSignupPage();
+            }else{
+                loadLoginPage();
+            }   
         }
     }
+
+    function showSenpai(number){
+        if(number==1){
+            app.currentSenpai = app.sp1;
+            app.sp1.css("display","block");
+            app.sp2.css("display","none");
+        }else{
+            app.currentSenpai = app.sp2;
+            app.sp1.css("display","none");
+            app.sp2.css("display","block");
+        }
+    }
+
+    function loadMyFridgePage(){
+        toggleLoaderOn(true);
+        $.get( "partials/myFridge.html", function( data ) {
+          $( ".main" ).html( data );
+        }).always(function() {
+            //request finished
+            getProductsCollection().forEach(function(doc){
+                console.log("inside load fridge");
+                console.log(doc.id);
+            });
+            alert( "finished" );
+        });
+        toggleLoaderOn(false);
+    }
+
 
     /*****************************************************************************
      *
      * Methods for dealing with the model
      *
      ****************************************************************************/
-
+     
+     function getProductsCollection(){
+        var collectionProducts;
+        app.db.collection("fridges/"+app.user.uid+"/products").get().then(function(querySnapshot) {
+            collectionProducts = querySnapshot;
+            querySnapshot.forEach(function(doc) {
+                console.log(doc.id, " => ", doc.data());
+            });
+            return collectionProducts;
+        });
+    };
 
 
     /*****************************************************************************
@@ -85,12 +162,31 @@
         });
      }
 
+    // After a user was created with Auth.module, create settings and fridge for the user in the firestore database
      function setUpAccountData(){
         app.db.collection("user-settings").doc(app.user.uid).set({
             isSetupFinished: false
         })
         .then(function() {
-            console.log("Document successfully written!");
+            console.log("User settings successfully created!");
+            app.db.collection("fridges").doc(app.user.uid).set({
+
+            })
+            .then(function(){
+                console.log("User fridge successfully created!");
+                /*app.db.collection("fridges/"+app.user.uid+"/products").add({
+
+                })
+                .then(function(docRef) {
+                    console.log("User products created!: ", docRef.id);
+                })
+                .catch(function(error) {
+                    console.error("Error adding document: ", error);
+                });*/
+            })
+            .catch(function(error){
+                console.error("Error writing document: ", error);
+            });
         })
         .catch(function(error) {
             console.error("Error writing document: ", error);
@@ -118,22 +214,62 @@
      ************************************************************************/
 
     firebase.auth().onAuthStateChanged(function(user) {
+        toggleLoaderOn(false);
         app.user = user;
         if (user!=undefined && user.emailVerified) {
             if(app.isFirstAuthCheckDone){
-                //show senpai2
+                showSenpai(2);
                 //load fridge page
             }else{
                 app.isFirstAuthCheckDone=true;
+                showSenpai(2);
+                //show senpai2
+                docRefUserSettings = app.db.collection("user-settings").doc(user.uid);
+                //get the user-settings document
+                docRef.get().then(function(doc) {
+                    if (doc.exists) {
+                        //check if user finished settup
+                            //true
+                        if(doc.data().isSetupFinished) {
+                                //load fridge page in senpai2
+                            loadMyFridgePage();
+                        }else{
+                            loadMyFridgePage();
+                            //false
+                                // load setup page in senpai2
+                        }
+                    } else {
+                        console.log("No such user-settings document!");
+                    }
+                }).catch(function(error) {
+                    console.log("Error getting settings document:", error);
+                });
+
+            }
+        } else if(user && !user.emailVerified) {
+            if(app.isFirstAuthCheckDone=true){ //todelete if
+                setUpAccountData();
+            }//todelete if
+
+            //don't verify e-mail just yet
+                app.isFirstAuthCheckDone=true;
+                showSenpai(2);
+                loadMyFridgePage();
                 //check if user finished settup
                     //true
                         //load fridge page in senpai2
                     //false
                         // load setup page in senpai2
-            }
-        } else if(user && !user.emailVerified) {
-            setUpAccountData();
+
+
+            //swal
             //show a verification screen and continue
+
+            /*user.sendEmailVerification().then(function() {
+              // Email sent.
+            }).catch(function(error) {
+              // An error happened.
+            });*/
         }else{
             if(app.isFirstUnauthCheckDone){
                 //User is signed out
@@ -142,14 +278,14 @@
                 //load signup page
                 //executes when app runs for the first time if user is not auth.
                 app.isFirstUnauthCheckDone = true;
-                switchSenpaiPage();
             }
         }
     });
 
+    switchLoginSignupPage("signup");
+
     //Materialize - setup side drawer navigation
     $(".button-collapse").sideNav();
-
 })();
 
 // Register our service worker

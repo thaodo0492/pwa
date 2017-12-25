@@ -178,3 +178,12 @@ html, body {
      flex-direction: column;
      height: calc(100% - 56px);
 }
+
+#loader {
+     position: absolute;
+     z-index: 1;
+     width: 100%;
+     height: 100%;
+     background-color: rgba(55, 63, 73, 0.6);
+     justify-content: center;
+}
