@@ -59,7 +59,7 @@
         position: absolute;
         left: 100%;
         top: 0;
-        height:46px;
+        height:100%;
         background-color:red;
         padding-left:15px;
         min-width:120px;
@@ -75,19 +75,20 @@
     <p class="col s10 offset-s1 center-align">A naked women robbed a bank. Nobody could remember her face / My dog used to chase people on a bike a lot. It got so bad, finally I had to take his bike away. </p>
 </div>
 <ul class="collection fridge-collection">
-    <!--<li class="collection-item fridge-item removableFridgeItem">
+
+<template id="templateRemovableFridgeItem"><li class="collection-item fridge-item removableFridgeItem">
         <div class="row row-fridge-collection valign-wrapper">
-            <div class="col s6 truncate">Smoked Turkey that I super duper hate</div>
-            <div class="col s3 center-align truncate">200 gram</div>
-            <div class="col s3 item-expiry-date truncate">30 days</div>
+            <div class="col s6 truncate fridge-item-name">Smoked Turkey that I super duper hate</div>
+            <div class="col s3 center-align truncate fridge-item-quantity">200 gram</div>
+            <div class="col s3 item-expiry-date truncate fridge-item-time-left">30 days</div>
         </div>
         <div class="fridge-item_deletionDiv valign-wrapper"><i class="material-icons">delete</i>delete</div>
-    </li>-->
+    </li></template>
 </ul>
 <a class="btn-floating btn-large waves-effect waves-light btn-add-product z-depth-3"><i class="material-icons">add</i></a>
 
 <script src="https://hammerjs.github.io/dist/hammer.js"></script>
-<script type="text/javascript">
+<script type="text/javascript">/*
 var fridgeItemsSwipe = {};
 
 fridgeItemsSwipe.prepare = function(){
@@ -101,7 +102,7 @@ fridgeItemsSwipe.prepare = function(){
     function resetElement(element){
         element.style.left = 0;
     }
-    
+
     $.each($(".removableFridgeItem"), function (index, value){
         var domObject = $(".removableFridgeItem")[index];
         
@@ -128,12 +129,56 @@ fridgeItemsSwipe.prepare = function(){
             }
         });
     });
+/*
+    var fridgeCollectionUL = document.querySelector('.fridge-collection');
+
+    var observer = new MutationObserver(function(mutations) {
+        // Notice this will not be called because takeRecords clears outstanding records
+        console.log('In MutationObserver callback');      
+    });*/
+/*    var bar = document.createElement('div');
+    bar.textContent = 'bar';
+
+    fridgeCollectionUL.appendChild(bar);
+*/
+    // Synchronously grab any outstanding mutations and process them now
+   /* var mutations = observer.takeRecords();
+
+    mutations.forEach(function(mutation) {
+            console.log(mutation);
+            console.log(mutation.addedNodes);
+        for (var i = 0; i < mutation.addedNodes.length; i++) {
+            console.log('"' + mutation.addedNodes[i].textContent + '" added');
+            var domObject = mutation.addedNodes[i];
+            var hammertime = new Hammer(domObject, {preventDefault: true});
+            hammertime.on("dragup dragdown swipeup swipedown", function(ev){});
+
+            //do stuff on swipe/drag left/right
+            var newHammer = new Hammer (domObject);
+            newHammer.on("panstart panend panleft panright", function(ev2){
+                console.log(ev2);
+                if (ev2.type == "panend"){
+                    if(ev2.deltaX < -120){
+                        deleteElement(domObject);
+                    }else{
+                        resetElement(domObject);
+                    }
+                }else{
+                    if(ev2.center.x == 0 && ev2.center.y ==0){
+                    }else{
+                        var x = $(".main").find(ev2.target).closest('.removableFridgeItem');
+                        x.css("left",ev2.deltaX+"px");
+                    }   
+                }
+            });
+        }
+    });*/
+/*
 }
 
 fridgeItemsSwipe.prepareWhenReady = function() {
     document.addEventListener("DOMContentLoaded", fridgeItemsSwipe.prepare);
 };
 
-fridgeItemsSwipe.prepareWhenReady();
-
+fridgeItemsSwipe.prepareWhenReady();*/
 </script>
