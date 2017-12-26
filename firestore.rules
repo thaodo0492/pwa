@@ -3,5 +3,15 @@ service cloud.firestore {
     match /user-settings/{userId} {
       allow read,write: if userId == request.auth.uid;
     }
+    match /fridges/{userId} {
+      function isUserAuthorized() {
+        return userId == request.auth.uid;
+      }
+
+      allow read,write: if userId == request.auth.uid;
+      match /products/{allChildren=**} {
+        allow read,write: if isUserAuthorized();
+      }
+    }
   }
 }
